@@ -1,0 +1,29 @@
+#!/bin/bash
+#PBS -N NN_Block3
+#PBS -l nodes=1:ppn=1:gpus=1  # Number of nodes and processors per node
+#PBS -l walltime=30:00:00  # Maximum walltime 
+
+# Unload conflicting modules
+module unload GCCcore
+module unload foss
+module unload gfbf
+
+# Load necessary modules
+module load Python/3.11.3-GCCcore-12.3.0  # Adjust this to the Python version installed on your system
+module load matplotlib/3.7.2-gfbf-2023a
+module load TensorFlow/2.15.1-foss-2023a-CUDA-12.1.1
+module load IPython/8.14.0-GCCcore-12.3.0
+module load time/1.9-GCCcore-13.3.0
+
+# If needed, install additional Python packages
+pip3 install --user astropy
+pip3 install --user datetime
+pip3 install --user scikit-image
+pip3 install --user scikit-learn
+
+
+# Change to the directory where the job was submitted
+cd /data/gent/vo/000/gvo00053/vsc47220
+
+# Run the Python script
+python NN_Block3.py
